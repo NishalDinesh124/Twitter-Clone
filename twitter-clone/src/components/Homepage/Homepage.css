@@ -1,0 +1,35 @@
+.main-section{
+    border: solid 1px magenta;
+    height: 500px;
+    padding-left: 35rem;
+    position: relative;
+    background-color: black;
+}
+.navbar {
+    color: black;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    height: 30px;
+    right: 1px;
+    left: 1px;
+    padding: 27px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .fa-star{
+    position: absolute;
+    bottom: 16px;
+    right: 15px;
+    cursor: pointer;
+  }
+  .navbar .nav-icon{
+    position: absolute;
+    bottom: 8px;
+    left: 15px;
+  }
+  .navbar .nav-icon h5{
+    font-weight: 600;
+  }
+
