@@ -3,6 +3,7 @@
     border: solid 1px magenta;
     display: flex;
     justify-content: space-around;
+    min-height: 850px;
 }
 *{
     margin: 0;
