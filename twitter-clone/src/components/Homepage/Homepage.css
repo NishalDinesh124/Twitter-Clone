@@ -1,9 +1,9 @@
-.main-section{
+.main-section {
     border: solid 1px magenta;
-    padding-left: 35rem;
+    width: 35rem;
     position: relative;
-    background-color: black;
 }
+
 .navbar {
     color: black;
     position: absolute;
@@ -15,20 +15,55 @@
     padding: 27px;
     display: flex;
     align-items: center;
-  }
-  
-  .navbar .fa-star{
+}
+
+.navbar .fa-solid {
     position: absolute;
     bottom: 16px;
     right: 15px;
     cursor: pointer;
-  }
-  .navbar .nav-icon{
+}
+
+.navbar .nav-icon {
     position: absolute;
     bottom: 8px;
     left: 15px;
-  }
-  .navbar .nav-icon h5{
-    font-weight: 600;
-  }
+}
 
+.navbar .nav-icon h5 {
+    font-weight: 600;
+}
+
+.tweet-section {
+    width: 100%;
+    border: solid 1px magenta;
+    height: 198px;
+    display: flex;
+    margin-top: 55px;
+}
+
+.tweet-section .left-panel {
+    border: solid 1px magenta;
+    width: 13%;
+    height: 100%;
+}
+
+.tweet-section .right-panel {
+    width: 87%;
+    border: solid 1px green;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tweet-section .right-panel .top-panel {
+    border: solid 1px magenta;
+    width: 100%;
+    height: 50%;
+}
+
+.tweet-section .right-panel .bottom-panel {
+    border: solid 1px blue;
+    width: 100%;
+    height: 50%;
+}
