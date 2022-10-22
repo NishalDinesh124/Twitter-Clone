@@ -43,27 +43,68 @@
 }
 
 .tweet-section .left-panel {
-    border: solid 1px magenta;
+    border: solid 1px lightgrey;
     width: 13%;
-    height: 100%;
+    height: 58%;
+    border-right: none;
 }
 
 .tweet-section .right-panel {
-    width: 87%;
-    border: solid 1px green;
+    width: 87%; 
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .tweet-section .right-panel .top-panel {
-    border: solid 1px magenta;
+    border: solid 1px lightgrey;
     width: 100%;
-    height: 50%;
+    height: 58%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-left:none ;
 }
 
 .tweet-section .right-panel .bottom-panel {
     border: solid 1px blue;
     width: 100%;
     height: 50%;
+}
+
+.left-panel img {
+    border-radius: 104px;
+    margin-top: 12px;
+    width: 76px;
+    height: 76px;
+}
+
+.left-panel .img-div {
+    width: 50px;
+    height: 50px;
+    margin-top: 12px;
+    border-radius: 30px;
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfmns5LQjn5imNgcW3cozyKAtjRy7v-2I2kw&usqp=CAU")
+}
+.tweet-section .top-panel input{
+    width: 100%;
+    border: none;
+    margin-top: 20px;
+    font-size: larger;
+}
+.tweet-section .top-panel .tweet-icons{
+    color: rgb(29, 155, 240);
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+.tweet-section .top-panel .tweet-btn{
+    padding: 16px 3em;
+    margin: 1em;
+    background-color: rgb(29, 155, 240);
+    font-weight: 700;
+    color: #fff;
+    border-radius: 30px;
+    border: none;
+    float: right;
 }
