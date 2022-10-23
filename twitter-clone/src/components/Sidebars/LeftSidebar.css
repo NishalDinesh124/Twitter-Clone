@@ -1,16 +1,19 @@
 .left-section{
-    width: 300px;
+    width: 288px;
     border: solid 1px magenta;
+    border-right: none;
     display: flex;
     flex-direction: column;
+    padding: 0px 26px;
 }
 .panel{
     border: solid 1px green;
     flex-direction: column;
+    height: 500px;
 }
 .twitter-icon{
-    padding-top: 11px;
-    padding-bottom: 20px;
+    padding-top: 3px;
+    padding-bottom: 9px;
     color: rgb(29, 155, 240);
     font-size: 30px;
    
@@ -18,9 +21,12 @@
 .panel .home{
     border: solid 1px magenta;
     width: 100%;
-    height: 56px;
+    height: 49px;
     display: flex;
     align-items: center;
+    border-radius: 30px;
+    padding: 12px;
+    margin: 7px;
 }
 .panel .home .inner-home a{
     text-decoration: none;
@@ -31,7 +37,6 @@
     font-size: 19px;
 }
 .panel .home i{
-    margin-right: 3px;
     font-size: 23px;
 }
 .panel .home .inner-home{
@@ -51,3 +56,38 @@
 .tweet-btn:hover{
     background-color: rgb(13, 138, 221);
 }
+.panel .home-1{
+    width: 123px;
+}
+.panel .explore{
+    width: 132px;
+}
+.panel .notifications{
+    width: 182px;
+}
+.panel .home-1:hover{
+    background-color: lightgrey;
+  
+}
+.panel .explore:hover{
+    background-color: lightgrey;
+}
+.panel .notifications:hover{
+    background-color: lightgrey;
+}
+.panel .messages:hover{
+    background-color: lightgrey;
+}
+.panel .bookmarks:hover{
+    background-color: lightgrey;
+}
+.panel .lists:hover{
+    background-color: lightgrey;
+}
+.panel .profile:hover{
+    background-color: lightgrey;
+}
+.panel .more:hover{
+    background-color: lightgrey;
+}
+

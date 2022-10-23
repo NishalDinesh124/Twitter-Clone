@@ -30,10 +30,16 @@ function Homepage() {
                             <i class="fa-solid fa-list-ol"></i>
                             <i class="fa-regular fa-face-smile"></i>
                             <i class="fa-regular fa-calendar-days"></i>
-                            
+                            <div className='btn-div-tweet'>
+                        <button class="btn-tweet">
+                                Tweet
+                            </button>
+                       
+                        </div>
 
                         </div>
-                       
+                        
+                        
 
                     </div>
                 </div>
