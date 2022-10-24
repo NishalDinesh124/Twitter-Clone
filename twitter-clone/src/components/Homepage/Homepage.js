@@ -25,27 +25,45 @@ function Homepage() {
                     <div className="top-panel">
                         <input type="text" placeholder="What's Happening?" />
                         <div className="tweet-icons">
-                            <i class="fa-regular fa-image"></i>
-                            <i class="fa-solid fa-gift"></i>
-                            <i class="fa-solid fa-list-ol"></i>
-                            <i class="fa-regular fa-face-smile"></i>
+                            <div className='icon-div'>
+                                <i class="fa-regular fa-image"></i>
+                            </div>
+                            <div className='icon-div'>
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+
+
+                            <div className='icon-div'>
+                                <i class="fa-solid fa-list-ol"></i>
+                            </div>
+                            <div className='icon-div'>
+                                <i class="fa-regular fa-face-smile"></i>
+                            </div>
+                            <div className='icon-div'>
                             <i class="fa-regular fa-calendar-days"></i>
+                            </div>
                             <div className='btn-div-tweet'>
                         <button class="btn-tweet">
-                                Tweet
-                            </button>
+                            Tweet
+                        </button>
+                        </div>
                        
-                        </div>
+                    </div>
 
-                        </div>
-                        
-                        
+
+
+
+                    
 
                     </div>
+
                 </div>
+
+
 
             </div>
         </div>
+
     )
 }
 

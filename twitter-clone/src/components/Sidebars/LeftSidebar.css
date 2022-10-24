@@ -19,7 +19,6 @@
    
 }
 .panel .home{
-    border: solid 1px magenta;
     width: 100%;
     height: 49px;
     display: flex;
@@ -57,37 +56,52 @@
     background-color: rgb(13, 138, 221);
 }
 .panel .home-1{
-    width: 123px;
+    width: 130px;
 }
 .panel .explore{
-    width: 132px;
+    width: 140px;
+}
+.panel .messages{
+    width: 165px;
+}
+.panel .bookmarks{
+    width: 167px;
+}
+.panel .lists{
+    width: 120px;
+}
+.panel .profile{
+    width: 130px;
 }
 .panel .notifications{
-    width: 182px;
+    width: 190px;
+}
+.panel .more{
+    width: 120px;
 }
 .panel .home-1:hover{
-    background-color: lightgrey;
+    background-color: rgba(224, 219, 219, 0.973);
   
 }
 .panel .explore:hover{
-    background-color: lightgrey;
+    background-color: rgba(224, 219, 219, 0.973);
 }
 .panel .notifications:hover{
-    background-color: lightgrey;
+    background-color: rgba(224, 219, 219, 0.973);
 }
 .panel .messages:hover{
-    background-color: lightgrey;
+    background-color: rgba(224, 219, 219, 0.973);
 }
 .panel .bookmarks:hover{
-    background-color: lightgrey;
+    background-color: rgba(224, 219, 219, 0.973);
 }
 .panel .lists:hover{
-    background-color: lightgrey;
+    background-color: rgba(224, 219, 219, 0.973);
 }
 .panel .profile:hover{
-    background-color: lightgrey;
+    background-color: rgba(224, 219, 219, 0.973);
 }
 .panel .more:hover{
-    background-color: lightgrey;
+    background-color: rgba(224, 219, 219, 0.973);
 }
 
