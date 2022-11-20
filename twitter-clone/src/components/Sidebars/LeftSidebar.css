@@ -4,18 +4,19 @@
     border-right: none;
     display: flex;
     flex-direction: column;
-    padding: 0px 26px;
+    padding: 0px 19px;
 }
 .panel{
     border: solid 1px green;
     flex-direction: column;
-    height: 500px;
+    height: 482px;
 }
 .twitter-icon{
     padding-top: 3px;
     padding-bottom: 9px;
     color: rgb(29, 155, 240);
     font-size: 30px;
+    margin-left: 13px;
    
 }
 .panel .home{
@@ -45,7 +46,6 @@
 }
 .tweet-btn{
     padding: 16px 6em;
-    margin: 1em;
     background-color: rgb(29, 155, 240);
     font-weight:700;
     color: #fff;
@@ -54,6 +54,10 @@
 }
 .tweet-btn:hover{
     background-color: rgb(13, 138, 221);
+}
+.tweet{
+    display: flex;
+    justify-content: center;
 }
 .panel .home-1{
     width: 130px;
