@@ -45,9 +45,9 @@
     align-items: center;
 }
 .tweet-btn{
-    padding: 16px 6em;
+    padding: 15px 6em;
     background-color: rgb(29, 155, 240);
-    font-weight:700;
+    font-weight: 700;
     color: #fff;
     border-radius: 30px;
     border: none;

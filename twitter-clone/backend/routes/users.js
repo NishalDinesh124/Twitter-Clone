@@ -21,7 +21,6 @@ const upload = multer({
 
 router.route('/').get(async(req, res)=>{
     let user = req.session.user
-    console.log(user);
     let tweets = await userHelpers.getTweets()
     if(tweets){
         res.json(tweets)
@@ -34,7 +33,7 @@ router.route('/').get(async(req, res)=>{
 });
 
 router.route('/signup').post((req, res)=>{
-    console.log(req.body.tweet)
+    console.log(req.body)
      userHelpers.addUsers(req.body)
      .then(()=>{
         res.json("User added")
@@ -59,7 +58,7 @@ router.route('/login').post((req,res)=>{
 });
 
 router.route('/tweet').post((req,res)=>{
-    console.log(req.body);
+    console.log(req.body.tweet);
     upload(req,res,(err)=>{
         if(err){
             console.log(err);

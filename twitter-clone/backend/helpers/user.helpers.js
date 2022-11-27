@@ -14,6 +14,7 @@ module.exports={
         })
     },
     addUsers : (userDetails)=>{
+        console.log(userDetails);
         try{
         return new Promise(async(resolve, reject) => {
             userDetails.password = await bcrypt.hash(userDetails.password, 10)
