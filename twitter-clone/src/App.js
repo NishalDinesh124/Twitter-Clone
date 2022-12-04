@@ -1,17 +1,21 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from './components/Navbar/Navbar';
-import HomePage from './components/Homepage/Homepage';
-import LeftSidebar from './components/Sidebars/LeftSidebar';
-import RightSidebar from './components/Sidebars/RightSidebar';
+import Home from "./Pages/Home";
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 function App() {
   return (
-    <div className="container">
-      
-      <Navbar/>
-       <LeftSidebar/>
-       <HomePage/>
-      <RightSidebar/> 
+    <div>
+
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home/>}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path="/signup" element={<Signup/>}/>
+        </Routes>
+      </Router>
+
     </div>
   );
 }

@@ -1,0 +1,92 @@
+
+.signup .container{
+    background-color: #efefef;
+    padding: 0rem 23rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.signup-section{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 15px;;
+    min-height: 40rem;
+    height: 40rem;
+    width: 40rem;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.signup-section input{
+    border: solid 1px  lightgray;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 480px;
+    min-width: 100px;
+    height: 60px;
+    font-size: 15px;
+}
+.signup-section .top-section{
+    margin-bottom: 9px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.signup-section .top-section i{
+    color: rgb(29, 155, 240);
+    font-size: 40px;
+    margin-bottom: 6px;
+}
+.signup-section .top-section h5{
+    font-size: 30px;
+    color: black;
+}
+.signup-section .dob{
+    width: 39rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+.signup-section .dob select{
+    width: 100px;
+    padding-bottom: 30px;
+    background-color: #fff;
+    font-size: 13px;
+    color: black;
+}
+.term-sec{
+    width: 450px;
+}
+.signup-section .term-sec p{
+    color: gray;
+    font-size: 13px;
+}
+.term-sec h6{
+    color: black;
+}
+.signup-section .btn{
+    background-color: rgb(29, 155, 240);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    width: 70%;
+}
+.signup-section input[type="text"], input[type="password"], textarea,select { 
+   outline: none;
+}
+
+/* Media queries
+=================*/
+@media screen and (max-width: 820px){
+    .signup .container{
+        display: hide;
+    }
+    .signup-section{
+        height: 100%;
+        width: 100%;
+    }
+}

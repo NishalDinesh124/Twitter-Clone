@@ -95,6 +95,9 @@
     height: 27%;
     padding-bottom: 18px;
 }
+.tweet-section .top-panel input[type="text"], input[type="password"], textarea,select { 
+    outline: none;
+ }
 
 .tweet-section .top-panel .tweet-icons {
     color: rgb(29, 155, 240);

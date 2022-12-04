@@ -1,9 +1,5 @@
 
-.container{
-    border: solid 1px magenta;
-    display: flex;
-    min-height: 850px;
-}
+
 *{
     margin: 0;
     padding: 0;
