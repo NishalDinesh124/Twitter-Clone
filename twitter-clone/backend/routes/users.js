@@ -33,10 +33,13 @@ router.route('/').get(async(req, res)=>{
 });
 
 router.route('/signup').post((req, res)=>{
-    console.log(req.body)
      userHelpers.addUsers(req.body)
-     .then(()=>{
-        res.json("User added")
+     .then((response)=>{
+        if(response.userExist){
+            res.json(true)
+        }else{
+            res.json(false)
+        }
      })
      .catch(err => res.status(400).json("Error :" + err))
    
@@ -48,9 +51,9 @@ router.route('/login').post((req,res)=>{
        
         if(response.loginStatus){
             req.session.user = response.user
-            res.json("Login successfull")
+            res.json(true)
         }else{
-            res.json("Login failed")
+            res.json(false)
         }
         
     })

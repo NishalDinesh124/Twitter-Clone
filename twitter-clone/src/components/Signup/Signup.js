@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 
 function Signup() {
@@ -9,6 +10,12 @@ function Signup() {
     const [month,setMonth] = useState('');
     const [day,setDay] =useState('');
     const [year,setYear] =useState('');
+    const navigate = useNavigate();
+
+    const handleLogin=()=>{
+        navigate('/login')
+
+    }
 
     const handleSubmit=(e)=>{
         e.preventDefault()
@@ -24,13 +31,16 @@ function Signup() {
                 password: password,
                 dob : date
             }
-        })
-        .then((response)=>{
-            console.log(response.data);
-        }).catch((err)=>{
-            console.log(err);
+        }).then((response)=>{
+            if(response.data){
+                alert("Email already exist")
+            }else{
+                alert("User added")
+                navigate('/')
+            }
         })
     }
+        
     return (
         <div className="signup">
              <div className='container '>
@@ -125,6 +135,7 @@ function Signup() {
                </div>
                
                <button type='submit' className='btn' >Signup</button>
+               <span onClick={handleLogin}>Already have an account?</span>
               
            </div>
            </form>
@@ -132,7 +143,6 @@ function Signup() {
         </div>
        
 
-    )
-}
+    )}
 
 export default Signup;

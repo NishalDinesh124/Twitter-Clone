@@ -17,12 +17,19 @@ module.exports={
         console.log(userDetails);
         try{
         return new Promise(async(resolve, reject) => {
+            let user =await User.findOne({"email" : userDetails.email})
+            if(user){
+                resolve({userExist : true})
+            }else{
+
+            
             userDetails.password = await bcrypt.hash(userDetails.password, 10)
            const newUser = new User(userDetails)
 
            newUser.save()
            .then(response)
-           resolve(response)
+           resolve(userExist= false)
+            }
         })
     }catch (err) {
        console.log(err);
@@ -32,7 +39,6 @@ module.exports={
     doLogin : (userDetails) =>{
         try{
             return new Promise(async(resolve, reject) => {
-                console.log(userDetails);
                
               let user =await User.findOne({"email" : userDetails.email})
               if(user){
