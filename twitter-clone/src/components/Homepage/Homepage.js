@@ -2,39 +2,99 @@ import React from 'react'
 import './Homepage.css'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Homepage() {
     const [tweets, setTweets] = useState([]);
-    const [newTweet,setNewtweet] = useState('');
-    const [image,setImage] = useState([]);
+    const [tweet, setNewtweet] = useState('');
+    const [image, setImage] = useState();
+    const navigate = useNavigate();
+
+    const onFileChange = (e) => {
+        setImage(e.target.files[0])
+    }
 
     useEffect(() => {
         axios.get("http://localhost:5000")
             .then((res) => {
-                setTweets(res.data);
+                console.log(res.data);
+                if (res.data) {
+                    setTweets(res.data);
+                } else {
+                    navigate('/login')
+                }
+
             }).catch((err) => {
                 console.log(err);
             })
     }, []);
+    // function handleSubmit(e) {
+    //     e.preventDefault();
+    //     console.log(postImage);
+    //     try {
+    //       axios("http://localhost:5000/tweet", {
+    //         method: "POST",
+    //         body:{
+    //             postImage:postImage,
+    //             tweet: tweet
+    //         }
+    //       });
+    //     } catch (err) {
+    //       console.log(err,"An error")
+    //     }
+    //   }
 
 
-   const handleSubmit=(e)=>{
-    console.log("Working");
-    e.preventDefault()
-    axios({
-        method : "post",
-        url : "http://localhost:5000/tweet",
-        data : {
-            tweet : newTweet,
-            postImage : image
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (image) {
+            console.log("Image is there");
+            let formData = new FormData();
+            formData.append('testImage', image);
+            formData.append('tweet', tweet);
+
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+            }
+
+            axios.post("http://localhost:5000/imgtweet", formData, config)
+                .then((res) => {
+                    console.log(res.data);
+                })
+                .catch((err) => {
+                    console.log(err, "An error has occured");
+                })
+        } else {
+            console.log("No image");
+            // let formData = new FormData();
+            // formData.append('tweet', tweet)
+            axios({
+                method: "post",
+                url: "http://localhost:5000/tweet",
+                data: {
+                    tweet
+                }
+            })
+                .then((res) => {
+                    console.log(res.data);
+                })
+                .catch((err) => {
+                    console.log(err, "An error occured in tweeting");
+                })
         }
-    })
-    .then((res)=>{
-        console.log("DAta");
-    }).catch((err)=>{
-        console.log(err);
-    })
-   }
+
+    }
+    const handleLogout = () => {
+        
+        axios.get("http://localhost:5000/logout")
+            .then((res) => {
+                console.log(res.data);
+                window.location.reload()
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
+
     return (
 
         <div className="main-section">
@@ -58,31 +118,36 @@ function Homepage() {
                 <div className="right-panel">
                     <div className="top-panel">
                         <form onSubmit={handleSubmit}>
-                        <input onChange={(e)=>setNewtweet(e.target.value)} type="text" value={newTweet} name="tweet" placeholder="What's Happening?" />
-                        <div className="tweet-icons">
-                            <div className='icon-div'>
-                                <i class="fa-regular fa-image"></i>
-                            </div>
-                            <div className='icon-div'>
-                                <i class="fa-solid fa-gift"></i>
-                            </div>
+                            <input className='tweet-input' onChange={(e) => setNewtweet(e.target.value)} type="text" value={tweet} name="tweet" placeholder="What's Happening?" />
+                            <div className="tweet-icons">
+                                <div className='icon-div'>
+                                    <label>
+                                        <input type="file" hidden onChange={onFileChange} />
+                                        <i class="fa-regular fa-image"> </i>
+                                    </label>
 
 
-                            <div className='icon-div'>
-                                <i class="fa-solid fa-list-ol"></i>
-                            </div>
-                            <div className='icon-div'>
-                                <i class="fa-regular fa-face-smile"></i>
-                            </div>
-                            <div className='icon-div'>
-                                <i class="fa-regular fa-calendar-days"></i>
-                            </div>
-                            <div className='btn-div-tweet'>
-                                <button type='submit' class="btn btn-tweet" >Tweet</button>
-                                    
-                            </div>
+                                </div>
+                                <div className='icon-div'>
+                                    <i class="fa-solid fa-gift"></i>
+                                </div>
 
-                        </div>
+
+                                <div className='icon-div'>
+                                    <i class="fa-solid fa-list-ol"></i>
+                                </div>
+                                <div className='icon-div'>
+                                    <i class="fa-regular fa-face-smile"></i>
+                                </div>
+                                <div className='icon-div'>
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                </div>
+                                <div className='btn-div-tweet'>
+                                    <button type='submit' class="btn btn-tweet" >Tweet</button>
+
+                                </div>
+
+                            </div>
                         </form>
 
 
@@ -143,11 +208,13 @@ function Homepage() {
 
 
                         </div>
+
                     </div>
+
                 )
 
             })}
-
+            <button onClick={handleLogout}>Logout</button>
 
 
         </div>
@@ -155,5 +222,5 @@ function Homepage() {
     )
 }
 
-export default Homepage
+export default Homepage;
 

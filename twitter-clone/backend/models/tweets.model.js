@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const tweetsSchema = new Schema({
+  userId: String,
   tweet: { type: String, required: false },
-  post: {
-    data: Buffer,
-    contentType : String
-  }
- 
+  name : String,
+    img : {
+        data: Buffer,
+        contentType : String
+    },
 }, {
   timestamps: true,
 });

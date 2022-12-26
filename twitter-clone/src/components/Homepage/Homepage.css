@@ -87,7 +87,7 @@
     background: url("https://upload.wikimedia.org/wikipedia/commons/e/e1/Elon_Musk_%28cropped%29.jpg")
 }
 
-.tweet-section .top-panel input {
+.tweet-section .top-panel .tweet-input {
     width: 100%;
     border: none;
     margin-top: 28px;
@@ -190,6 +190,11 @@
     margin-left: 8px;
     font-size: 15px;
     font-weight: 400;
+}
+.top-panel .img-input{
+    width: 0px;
+    height: 0;
+    margin-bottom: 32px;
 }
 
 .creators .right-panel .name-section i {
