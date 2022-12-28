@@ -4,12 +4,14 @@ import { useState } from 'react';
 import { Link ,useNavigate} from 'react-router-dom';
 import Signup from '../Signup/Signup';
 import axios from 'axios';
+import { useSignIn } from 'react-auth-kit';
 
 function Login() {
     const [name, setName] =useState('');
     const [email , setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate= useNavigate();
+    const signIn = useSignIn()
 
     const handleSignup=()=>{
      navigate('/signup')
@@ -26,11 +28,19 @@ function Login() {
                 email:email
             }
         })
-        .then((response)=>{
-            if(response.data){
+        .then((res)=>{
+            console.log("Working");
+            if(res.data){
+                console.log("Response",res.data);
+                signIn({
+                    token : res.data.token,
+                    expiresIn: 3600,
+                    tokenType: "Bearer",
+                    authState: {email: email},
+                })
                 navigate('/')
             }else{
-                console.log("Inavlid email or password");
+                console.log("Invalid email or password");
                 alert("Invalid email or password")
             }
         })
@@ -39,23 +49,17 @@ function Login() {
     <div>
        <div className="signup">
              <div className='container '>
-           <form action="" onSubmit={handleSubmit}>
+           <form onSubmit={handleSubmit}>
            <div className='login-section'>
            <div className="top-section">
            <i class="fa-brands fa-twitter"></i>
 
            <h5>Login to Twitter</h5>
            </div>
-          
-
-           
-               <input type="text" value={name} placeholder='Name' onChange={(e)=>setName(e.target.value) } />
+           <input type="text" value={name} placeholder='Name' onChange={(e)=>setName(e.target.value) } />
                <input type="text" placeholder='Email' onChange={(e)=>setEmail(e.target.value) } />
                <input type="password" placeholder='Password' onChange={(e)=>setPassword(e.target.value) } />
-             
-               
-               
-               
+        
                <button type='submit' className='btn' >Signup</button>
                <span onClick={handleSignup}>Dont have an account?</span>
               

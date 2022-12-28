@@ -3,12 +3,15 @@ import './Homepage.css'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useSignOut } from 'react-auth-kit';
+
 
 function Homepage() {
     const [tweets, setTweets] = useState([]);
     const [tweet, setNewtweet] = useState('');
     const [image, setImage] = useState();
     const navigate = useNavigate();
+    
 
     const onFileChange = (e) => {
         setImage(e.target.files[0])
@@ -17,10 +20,10 @@ function Homepage() {
     useEffect(() => {
         axios.get("http://localhost:5000")
             .then((res) => {
-                console.log(res.data);
                 if (res.data) {
                     setTweets(res.data);
                 } else {
+                    console.log("Login to cont..",res.data);
                     navigate('/login')
                 }
 
@@ -28,22 +31,8 @@ function Homepage() {
                 console.log(err);
             })
     }, []);
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     console.log(postImage);
-    //     try {
-    //       axios("http://localhost:5000/tweet", {
-    //         method: "POST",
-    //         body:{
-    //             postImage:postImage,
-    //             tweet: tweet
-    //         }
-    //       });
-    //     } catch (err) {
-    //       console.log(err,"An error")
-    //     }
-    //   }
 
+////// Login ///////
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -66,8 +55,6 @@ function Homepage() {
                 })
         } else {
             console.log("No image");
-            // let formData = new FormData();
-            // formData.append('tweet', tweet)
             axios({
                 method: "post",
                 url: "http://localhost:5000/tweet",
@@ -84,16 +71,8 @@ function Homepage() {
         }
 
     }
-    const handleLogout = () => {
-        
-        axios.get("http://localhost:5000/logout")
-            .then((res) => {
-                console.log(res.data);
-                window.location.reload()
-            }).catch((err) => {
-                console.log(err);
-            })
-    }
+
+   
 
     return (
 
@@ -214,7 +193,6 @@ function Homepage() {
                 )
 
             })}
-            <button onClick={handleLogout}>Logout</button>
 
 
         </div>

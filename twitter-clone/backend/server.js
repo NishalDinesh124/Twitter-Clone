@@ -1,20 +1,11 @@
 const express = require('express');
+const app = express()
 const cors = require('cors');
 const mongoose = require('mongoose');
-var session = require('express-session');
 require('dotenv').config();
+var cookieParser = require('cookie-parser');
 
-
-
-
-const app = express();
 const port = process.env.PORT || 5000;
-
-
-
-app.use(cors());
-app.use(express.json());
-app.use(session({ secret: "Key", cookie: { maxAge: 600000 } }))
 
 
 const uri = process.env.ATLAS_URI;
@@ -27,6 +18,18 @@ connection.once('open', () => {
 
 const adminRouter = require('./routes/admin');
 const usersRouter = require('./routes/users');
+
+var session = require('express-session')
+app.use(cors());
+app.use(express.json());
+app.use(cookieParser());
+app.use(session({
+  resave: false,
+  saveUninitialized: true,
+  secret: 'sdlfjljrowuroweu',
+  cookie: { secure: false }
+}));
+
 
 app.use('/', usersRouter);
 app.use('/admin', adminRouter);

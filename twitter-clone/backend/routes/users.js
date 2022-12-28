@@ -1,20 +1,22 @@
+
 const router = require('express').Router();
 const express = require("express");
 const app = express()
-let User = require('../models/users.model');
+
+const User = require('../models/users.model');
 const cors = require("cors")
 const userHelpers = require('../helpers/user.helpers');
 const { response, application } = require('express');
 const multer = require('multer');
 const Tweet = require('../models/tweets.model');
-const ImageModel= require('../models/image.model')
+//const ImageModel= require('../models/image.model')
 const fs = require("fs")
+const jwt = require("jsonwebtoken");
 
 app.use(cors());
 app.use("/static", express.static("../uploads"));
 
-
- var userLoggedIn= null
+var userLoggedIn = null
 const storage = multer.diskStorage({
     destination:(req,res,cb)=>{
         cb(null,'../uploads')
@@ -33,19 +35,14 @@ const upload = multer({storage:storage})
 
 
 router.route('/').get(async (req, res) => {
-   if(userLoggedIn){
+    console.log(userLoggedIn);
     let tweets = await userHelpers.getTweets()
     if (tweets) {
         res.json(tweets)
     } else if (err) {
         console.log(err);
     }
-   }else{
-    res.send(null)
-   }
     
-
-
     // .catch(err => res.status(400).json("Error :" + err))
 });
 
@@ -62,14 +59,19 @@ router.route('/signup').post((req, res) => {
 
 });
 
-router.route('/login').post((req, res) => {
+router.route('/login').post(async(req, res) => {
+    console.log(req.body.email);
     userHelpers.doLogin(req.body)
         .then((response) => {
 
             if (response.loginStatus) {
                 //console.log(response.user);
                 userLoggedIn = response.user
-                res.json(true)
+               console.log(userLoggedIn);
+                const jwtToken =jwt.sign(
+                    {id: userLoggedIn._id, email:userLoggedIn.email}, 'shhhhh');
+                    console.log(jwtToken);
+                    res.json({message: "Welcome back!",token: jwtToken})
             } else {
                 res.json(false)
             }
@@ -79,13 +81,13 @@ router.route('/login').post((req, res) => {
 });
 
 router.post('/imgtweet', upload.single("testImage"),(req,res)=>{
-    console.log(userLoggedIn);
+    let user=userLoggedIn
         const saveImage = Tweet({
-            userId : userLoggedIn._id,
+            userId : user._id,
             tweet : req.body.tweet,
         name : req.body.tweet,
         img:{
-            data: fs.readFileSync('../uploads/' + userLoggedIn._id + "." + "jpg"),
+            data: fs.readFileSync('../uploads/' + user._id + "." + "jpg"),
             contentType : "image/png"
         },
     });
@@ -99,10 +101,10 @@ router.post('/imgtweet', upload.single("testImage"),(req,res)=>{
     res.send("Image is saved")
 });
 router.route('/tweet').post((req,res)=>{
+    let user= userLoggedIn
     console.log(req.body.tweet);
-    console.log("Working");
     const newTweet = new Tweet ({
-        userId: userLoggedIn._id,
+        userId: user._id,
         tweet : req.body.tweet,
     }) 
     newTweet.save()
@@ -122,8 +124,7 @@ router.route('/profile').get((req, res) => {
 });
 
 router.route('/logout').get((req, res) => {
-    userLoggedIn = null
-    console.log(userLoggedIn);
+    
     res.json("Logged out")
 });
 

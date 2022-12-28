@@ -28,7 +28,7 @@
     padding: 12px;
     margin: 7px;
 }
-.panel .home .inner-home a{
+.panel .home .inner-home span{
     text-decoration: none;
     font-weight: 700;
     color: black;

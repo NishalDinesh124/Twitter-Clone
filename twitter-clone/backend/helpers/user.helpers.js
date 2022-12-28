@@ -37,6 +37,7 @@ module.exports={
     },
     
     doLogin : (userDetails) =>{
+        console.log(userDetails.email);
         try{
             return new Promise(async(resolve, reject) => {
                

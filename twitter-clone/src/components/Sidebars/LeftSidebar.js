@@ -1,6 +1,16 @@
 import React from 'react'
+import { useSignOut } from 'react-auth-kit';
+import { Link, useNavigate } from 'react-router-dom'
 import './LeftSidebar.css'
 function LeftSidebar() {
+  const navigate = useNavigate();
+  const signOut = useSignOut();
+
+   // logout //
+   const logout=()=>{
+    signOut();
+    navigate("/login")
+  }
   return (
     <div className='left-section'>
       <div className="twitter-icon">
@@ -9,9 +19,9 @@ function LeftSidebar() {
       <div className="panel">
     
         <div className="home home-1">
-          <i class="fa-solid fa-house-chimney-window"></i>
+          <i class="fa-solid fa-house-chimney-window" onClick={navigate('/')}></i>
           <div className="inner-home">
-          <a href="#"> Home </a>
+          <span href="#"> Home </span>
           </div>
 
         </div>
@@ -21,44 +31,44 @@ function LeftSidebar() {
    
           </div>
                    <div className="inner-home">
-          <a href="#"> Explore </a>
+          <span href="#"> Explore </span>
           </div>
           
         </div>
         <div className="home notifications">
           <i class="fa-regular fa-bell"></i>
           <div className="inner-home">
-          <a href="#"> Notifications </a>
+          <span href="#"> Notifications </span>
           </div>
         </div>
         <div className="home messages">
           <i class="fa-regular fa-envelope"></i>
           <div className="inner-home">
-          <a href="#"> Messages </a>
+          <span href="#"> Messages </span>
           </div>
         </div>
         <div className="home bookmarks">
           <i class="fa-regular fa-bookmark"></i>
           <div className="inner-home">
-          <a href="#"> Bookmarks </a>
+          <span href="#"> Bookmarks </span>
           </div>
         </div>
         <div className="home lists">
           <i class="fa-solid fa-list-ul"></i>
           <div className="inner-home">
-          <a href="#"> Lists </a>
+          <span href="#"> Lists </span>
           </div>
         </div>
         <div className="home profile">
           <i class="fa-regular fa-user"></i>
           <div className="inner-home">
-          <a href="#"> Profile </a>
+          <span href="#" onClick={logout}> Profile </span>
           </div>
         </div>
         <div className="home more">
           <i class="fa-regular fa-comment-dots"></i>
           <div className="inner-home">
-          <a href="#"> More </a>
+          <span href="#"> More </span>
           </div>
         </div>
 
