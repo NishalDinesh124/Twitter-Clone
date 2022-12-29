@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSignOut } from 'react-auth-kit';
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './LeftSidebar.css'
 function LeftSidebar() {
   const navigate = useNavigate();

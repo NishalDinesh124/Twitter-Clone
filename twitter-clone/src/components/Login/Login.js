@@ -1,8 +1,8 @@
 import React from 'react'
 import './Login.css'
 import { useState } from 'react';
-import { Link ,useNavigate} from 'react-router-dom';
-import Signup from '../Signup/Signup';
+import {useNavigate} from 'react-router-dom';
+//import Signup from '../Signup/Signup';
 import axios from 'axios';
 import { useSignIn } from 'react-auth-kit';
 

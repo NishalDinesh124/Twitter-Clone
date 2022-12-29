@@ -1,58 +1,60 @@
 import React from 'react'
 import './Homepage.css'
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useSignOut } from 'react-auth-kit';
-
 
 function Homepage() {
-    const [tweets, setTweets] = useState([]);
+    //const [data, setData] = useState();
     const [tweet, setNewtweet] = useState('');
-    const [image, setImage] = useState();
-    const navigate = useNavigate();
-    
+    const [file, setFile] = useState(null);
+    const [tweets, setTweets] = useState([])
 
-    const onFileChange = (e) => {
-        setImage(e.target.files[0])
+
+
+    const handleFileChange = (e) => {
+        setFile(e.target.files)
     }
 
     useEffect(() => {
-        axios.get("http://localhost:5000")
+        axios.get("http://localhost:5000/")
             .then((res) => {
-                if (res.data) {
-                    setTweets(res.data);
-                } else {
-                    console.log("Login to cont..",res.data);
-                    navigate('/login')
-                }
+                setTweets(res.data)
+            }).catch((err) => console.log(err, "An error occur"))
 
-            }).catch((err) => {
-                console.log(err);
-            })
     }, []);
 
-////// Login ///////
+    ////// Tweet submit //////
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if (image) {
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        if (file) {
             console.log("Image is there");
-            let formData = new FormData();
-            formData.append('testImage', image);
-            formData.append('tweet', tweet);
+            //let formData = new FormData();
+            //formData.append('Image', image);
+            //formData.append('tweet', tweet);
 
-            const config = {
-                headers: { 'content-type': 'multipart/form-data' }
+            //const config = {
+            //  headers: { 'content-type': 'multipart/form-data' }
+            // }
+
+            // axios.post("http://localhost:5000/imgtweet", formData, config)
+            //     .then((res) => {
+            //         console.log(res.data);
+            //     })
+            //     .catch((err) => {
+            //         console.log(err, "An error has occured");
+            //     })
+
+            event.preventDefault();
+            const data = new FormData();
+            for(var x = 0; x<file.length; x++) {
+                data.append('file', file[x])
             }
-
-            axios.post("http://localhost:5000/imgtweet", formData, config)
-                .then((res) => {
-                    console.log(res.data);
-                })
-                .catch((err) => {
-                    console.log(err, "An error has occured");
-                })
+            axios.post("http://localhost:5000/imgtweet", data)
+            .then(res => { 
+                console.log(res.statusText)
+              })
         } else {
             console.log("No image");
             axios({
@@ -72,11 +74,16 @@ function Homepage() {
 
     }
 
-   
+
 
     return (
 
+
+
         <div className="main-section">
+
+
+
             <div className="navbar">
                 <div className="nav-icon">
                     <h5>Home</h5>
@@ -101,7 +108,13 @@ function Homepage() {
                             <div className="tweet-icons">
                                 <div className='icon-div'>
                                     <label>
-                                        <input type="file" hidden onChange={onFileChange} />
+                                        <input
+                                            className="form-control-file mb-3"
+                                            type="file" id="file"
+                                            accept=".jpg"
+                                            multiple
+                                            onChange={handleFileChange}
+                                        />
                                         <i class="fa-regular fa-image"> </i>
                                     </label>
 
@@ -139,7 +152,6 @@ function Homepage() {
                 </div>
 
 
-
             </div>
             {tweets.map((tweets) => {
                 return (
@@ -161,6 +173,8 @@ function Homepage() {
                                 <div className="content-section">
                                     <p>{tweets.tweet}</p>
                                 </div>
+
+
                                 <div className="reaction-section">
                                     <div className="reactions comment">
 
@@ -193,7 +207,6 @@ function Homepage() {
                 )
 
             })}
-
 
         </div>
 

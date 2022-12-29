@@ -17,25 +17,24 @@ app.use(cors());
 app.use("/static", express.static("../uploads"));
 
 var userLoggedIn = null
-const storage = multer.diskStorage({
-    destination:(req,res,cb)=>{
-        cb(null,'../uploads')
-    },
-    filename :(req,file,cb)=>{
-        let userId= ""+ userLoggedIn._id
-        console.log(req.body.fieldname);
-        cb(null,userId + "." + "jpg")
-    }
-})
+// const storage = multer.diskStorage({
+//     destination:(req,res,cb)=>{
+//         cb(null,'../uploads')
+//     },
+//     filename :(req,file,cb)=>{
+//         let userId= ""+ userLoggedIn._id
+//         console.log(req.body.fieldname);
+//         cb(null,userId + "." + "jpg")
+//     }
+// })
 
-const upload = multer({storage:storage})
+// const upload = multer({storage:storage})
 
 
     
 
 
 router.route('/').get(async (req, res) => {
-    console.log(userLoggedIn);
     let tweets = await userHelpers.getTweets()
     if (tweets) {
         res.json(tweets)
@@ -80,26 +79,26 @@ router.route('/login').post(async(req, res) => {
         .catch(err => res.status(400).json("Error :" + err))
 });
 
-router.post('/imgtweet', upload.single("testImage"),(req,res)=>{
-    let user=userLoggedIn
-        const saveImage = Tweet({
-            userId : user._id,
-            tweet : req.body.tweet,
-        name : req.body.tweet,
-        img:{
-            data: fs.readFileSync('../uploads/' + user._id + "." + "jpg"),
-            contentType : "image/png"
-        },
-    });
-    saveImage.save()
-    .then((res)=>{
-        console.log("Image is saved");
-    })
-    .catch((err)=>{
-        console.log(err,"An error occured");
-    });
-    res.send("Image is saved")
-});
+// router.post('/imgtweet', upload.single("testImage"),(req,res)=>{
+//     let user=userLoggedIn
+//         const saveImage = Tweet({
+//             userId : user._id,
+//             tweet : req.body.tweet,
+//         name : req.body.tweet,
+//         img:{
+//             data: fs.readFileSync('../uploads/' + user._id + "." + "jpg"),
+//             contentType : "image/png"
+//         },
+//     });
+//     saveImage.save()
+//     .then((res)=>{
+//         console.log("Image is saved");
+//     })
+//     .catch((err)=>{
+//         console.log(err,"An error occured");
+//     });
+//     res.send("Image is saved")
+// });
 router.route('/tweet').post((req,res)=>{
     let user= userLoggedIn
     console.log(req.body.tweet);
@@ -112,6 +111,27 @@ router.route('/tweet').post((req,res)=>{
         res.send('succesfully uploaded data')
     })
     .catch(err=> res.status(400).json("Error :" + err))
+});
+var storage = multer.diskStorage({
+
+    destination: "./public/images",
+    filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' +file.originalname )
+    }
+    })
+var upload = multer({ storage: storage }).array('file');
+
+router.route('/imgtweet').post((req,res)=>{
+    
+upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+        return res.status(500).json(err)
+    } else if (err) {
+        return res.status(500).json(err)
+    }
+return res.status(200).send(req.file)
+
+})
 })
 
 
