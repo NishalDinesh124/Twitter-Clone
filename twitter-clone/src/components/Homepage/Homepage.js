@@ -47,14 +47,18 @@ function Homepage() {
             //     })
 
             event.preventDefault();
-            const data = new FormData();
-            for(var x = 0; x<file.length; x++) {
-                data.append('file', file[x])
+            const formData = new FormData();
+            for (var x = 0; x < file.length; x++) {
+                formData.append('file',file[x],tweet)
             }
-            axios.post("http://localhost:5000/imgtweet", data)
-            .then(res => { 
-                console.log(res.statusText)
-              })
+            
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+            }
+         axios.post("http://localhost:5000/imgtweet", formData)
+                .then(res => {
+                    console.log(res.statusText)
+                }).catch((err)=>console.log(err,"An error has occurred"))
         } else {
             console.log("No image");
             axios({
@@ -108,8 +112,8 @@ function Homepage() {
                             <div className="tweet-icons">
                                 <div className='icon-div'>
                                     <label>
-                                        <input
-                                            className="form-control-file mb-3"
+                                        <input hidden
+
                                             type="file" id="file"
                                             accept=".jpg"
                                             multiple

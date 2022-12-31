@@ -12,11 +12,13 @@ const Tweet = require('../models/tweets.model');
 //const ImageModel= require('../models/image.model')
 const fs = require("fs")
 const jwt = require("jsonwebtoken");
+const { log } = require('console');
 
 app.use(cors());
 app.use("/static", express.static("../uploads"));
 
 var userLoggedIn = null
+var tweet = null
 // const storage = multer.diskStorage({
 //     destination:(req,res,cb)=>{
 //         cb(null,'../uploads')
@@ -29,9 +31,6 @@ var userLoggedIn = null
 // })
 
 // const upload = multer({storage:storage})
-
-
-    
 
 
 router.route('/').get(async (req, res) => {
@@ -112,18 +111,21 @@ router.route('/tweet').post((req,res)=>{
     })
     .catch(err=> res.status(400).json("Error :" + err))
 });
-var storage = multer.diskStorage({
 
+var storage = multer.diskStorage({
     destination: "./public/images",
-    filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' +file.originalname )
+    filename: function (req, file ,cb) {
+    tweet = file.originalname
+        console.log(file.originalname);
+    cb(null, Date.now() + '.' + 'jpg' )
     }
     })
 var upload = multer({ storage: storage }).array('file');
 
-router.route('/imgtweet').post((req,res)=>{
+router.route('/imgtweet').post(async(req,res)=>{
+  
     
-upload(req, res, function (err) {
+upload(req, res,async function (err) {
     if (err instanceof multer.MulterError) {
         return res.status(500).json(err)
     } else if (err) {
@@ -132,6 +134,8 @@ upload(req, res, function (err) {
 return res.status(200).send(req.file)
 
 })
+
+
 })
 
 
@@ -144,6 +148,7 @@ router.route('/profile').get((req, res) => {
 });
 
 router.route('/logout').get((req, res) => {
+    
     
     res.json("Logged out")
 });
