@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 function Homepage() {
     //const [data, setData] = useState();
     const [tweet, setNewtweet] = useState('');
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState();
     const [tweets, setTweets] = useState([])
+    const navigate = useNavigate();
 
 
 
@@ -19,7 +21,13 @@ function Homepage() {
     useEffect(() => {
         axios.get("http://localhost:5000/")
             .then((res) => {
-                setTweets(res.data)
+                console.log(res.data);
+                if (res.data) {
+                    setTweets(res.data)
+                } else {
+                    navigate('/login')
+                }
+
             }).catch((err) => console.log(err, "An error occur"))
 
     }, []);
@@ -32,33 +40,25 @@ function Homepage() {
             console.log("Image is there");
             //let formData = new FormData();
             //formData.append('Image', image);
-            //formData.append('tweet', tweet);
-
-            //const config = {
-            //  headers: { 'content-type': 'multipart/form-data' }
-            // }
-
-            // axios.post("http://localhost:5000/imgtweet", formData, config)
-            //     .then((res) => {
-            //         console.log(res.data);
-            //     })
-            //     .catch((err) => {
-            //         console.log(err, "An error has occured");
-            //     })
 
             event.preventDefault();
             const formData = new FormData();
+            formData.append('tweet', tweet)
+
             for (var x = 0; x < file.length; x++) {
-                formData.append('file',file[x],tweet)
+                formData.append('file', file[x])
+
             }
-            
-            const config = {
-                headers: { 'content-type': 'multipart/form-data' }
-            }
-         axios.post("http://localhost:5000/imgtweet", formData)
-                .then(res => {
-                    console.log(res.statusText)
-                }).catch((err)=>console.log(err,"An error has occurred"))
+
+            axios({
+                method: "post",
+                url: "http://localhost:5000/imgtweet",
+                data: formData
+            })
+                .then((res) => {
+                    console.log(res.data);
+                })
+                .catch((err) => console.log(err, "An error has occurred"))
         } else {
             console.log("No image");
             axios({
@@ -115,8 +115,6 @@ function Homepage() {
                                         <input hidden
 
                                             type="file" id="file"
-                                            accept=".jpg"
-                                            multiple
                                             onChange={handleFileChange}
                                         />
                                         <i class="fa-regular fa-image"> </i>
@@ -177,7 +175,8 @@ function Homepage() {
                                 <div className="content-section">
                                     <p>{tweets.tweet}</p>
                                 </div>
-
+                                {tweets.imageId && <img className='tweet-img' src={require(`../public/images/${tweets._id}.jpg`)}></img> }
+                                
 
                                 <div className="reaction-section">
                                     <div className="reactions comment">

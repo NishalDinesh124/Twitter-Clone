@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const tweetsSchema = new Schema({
-  userId: String,
+  userId: {type :String, required: true},
+  imageId: {type :String ,required: false},
   tweet: { type: String, required: false },
   name : String,
     img : {

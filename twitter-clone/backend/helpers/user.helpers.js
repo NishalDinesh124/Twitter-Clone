@@ -14,7 +14,6 @@ module.exports={
         })
     },
     addUsers : (userDetails)=>{
-        console.log(userDetails);
         try{
         return new Promise(async(resolve, reject) => {
             let user =await User.findOne({"email" : userDetails.email})
@@ -37,7 +36,7 @@ module.exports={
     },
     
     doLogin : (userDetails) =>{
-        console.log(userDetails.email);
+
         try{
             return new Promise(async(resolve, reject) => {
                

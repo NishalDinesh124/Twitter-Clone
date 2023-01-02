@@ -1,7 +1,13 @@
-
-const router = require('express').Router();
 const express = require("express");
-const app = express()
+var app = express()
+var router = require('express').Router()
+
+var bodyParser = require('body-parser')
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 const User = require('../models/users.model');
 const cors = require("cors")
@@ -12,37 +18,41 @@ const Tweet = require('../models/tweets.model');
 //const ImageModel= require('../models/image.model')
 const fs = require("fs")
 const jwt = require("jsonwebtoken");
+const formidable = require('formidable');
 const { log } = require('console');
 
 app.use(cors());
 app.use("/static", express.static("../uploads"));
 
-var userLoggedIn = null
-var tweet = null
-// const storage = multer.diskStorage({
-//     destination:(req,res,cb)=>{
-//         cb(null,'../uploads')
-//     },
-//     filename :(req,file,cb)=>{
-//         let userId= ""+ userLoggedIn._id
-//         console.log(req.body.fieldname);
-//         cb(null,userId + "." + "jpg")
-//     }
-// })
+  let userLoggedIn = null;
+ let tweetId = null
 
-// const upload = multer({storage:storage})
-
-
-router.route('/').get(async (req, res) => {
-    let tweets = await userHelpers.getTweets()
-    if (tweets) {
-        res.json(tweets)
-    } else if (err) {
-        console.log(err);
+//// Login status checking////
+//////////////////////////////
+ 
+const verifyLogin = (req, res, next) => {
+    console.log("Working");
+    if (userLoggedIn) {
+      next()
+    } else {
+      console.log("Working");
+      res.send(null)
     }
-    
-    // .catch(err => res.status(400).json("Error :" + err))
-});
+  }
+
+  var storage = multer.diskStorage({
+    destination: "d:/backup/projects/Twitter Clone/twitter-clone/src/components/public/images",
+    filename: function (req, file,cb) {
+        console.log(file);
+        
+    cb(null, tweetId + '.' + 'jpg' )
+    }
+    })
+var upload = multer({ storage: storage }).any('file');
+
+//// ROUTES//////
+/////////////////
+
 
 router.route('/signup').post((req, res) => {
     userHelpers.addUsers(req.body)
@@ -57,47 +67,25 @@ router.route('/signup').post((req, res) => {
 
 });
 
-router.route('/login').post(async(req, res) => {
-    console.log(req.body.email);
+router.post('/login',(req,res)=>{
     userHelpers.doLogin(req.body)
-        .then((response) => {
-
+        .then(async(response) => {
             if (response.loginStatus) {
-                //console.log(response.user);
-                userLoggedIn = response.user
-               console.log(userLoggedIn);
+              req.session.user = response.user
+                userLoggedIn= response.user
+                console.log(req.session.user);
                 const jwtToken =jwt.sign(
-                    {id: userLoggedIn._id, email:userLoggedIn.email}, 'shhhhh');
-                    console.log(jwtToken);
-                    res.json({message: "Welcome back!",token: jwtToken})
-            } else {
-                res.json(false)
+                    {id: req.session.user._id, email:req.session.user.email}, 'shhhhh');
+
+                res.send({token : jwtToken})
+                   
+                } else {
+                res.send(false)
             }
 
         })
         .catch(err => res.status(400).json("Error :" + err))
-});
-
-// router.post('/imgtweet', upload.single("testImage"),(req,res)=>{
-//     let user=userLoggedIn
-//         const saveImage = Tweet({
-//             userId : user._id,
-//             tweet : req.body.tweet,
-//         name : req.body.tweet,
-//         img:{
-//             data: fs.readFileSync('../uploads/' + user._id + "." + "jpg"),
-//             contentType : "image/png"
-//         },
-//     });
-//     saveImage.save()
-//     .then((res)=>{
-//         console.log("Image is saved");
-//     })
-//     .catch((err)=>{
-//         console.log(err,"An error occured");
-//     });
-//     res.send("Image is saved")
-// });
+})
 router.route('/tweet').post((req,res)=>{
     let user= userLoggedIn
     console.log(req.body.tweet);
@@ -112,31 +100,43 @@ router.route('/tweet').post((req,res)=>{
     .catch(err=> res.status(400).json("Error :" + err))
 });
 
-var storage = multer.diskStorage({
-    destination: "./public/images",
-    filename: function (req, file ,cb) {
-    tweet = file.originalname
-        console.log(file.originalname);
-    cb(null, Date.now() + '.' + 'jpg' )
-    }
-    })
-var upload = multer({ storage: storage }).array('file');
 
-router.route('/imgtweet').post(async(req,res)=>{
-  
+router.post('/imgtweet',async(req,res)=>{
+   
+
+    const form =await formidable({ multiples: true });
+    form.parse(req, async(err, fields, files) => {
+        let tweet = fields.tweet
+        let imgId= userLoggedIn._id
+    const newTweet =await new Tweet ({
+        userId: imgId,
+        tweet : tweet,
+        imageId : imgId
+    }) 
+    newTweet.save()
+    .then(async(res)=>{
+        console.log(res._id);
+        console.log("Tweets working!!!!!!!!!!!!!");
+        tweetId =await res._id
     
-upload(req, res,async function (err) {
-    if (err instanceof multer.MulterError) {
-        return res.status(500).json(err)
-    } else if (err) {
-        return res.status(500).json(err)
-    }
-return res.status(200).send(req.file)
+    })
+    .catch(err=> console.log(err))
+    });
+    
+        upload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+                return res.status(500).json(err)
+            } else if (err) {
+                return res.status(500).json(err)
+            }
+        return res.status(200).send(req.file)
+        
+        })
+    
+ 
 
-})
+    });
 
-
-})
 
 
 router.route('/profile').get((req, res) => {
@@ -152,8 +152,15 @@ router.route('/logout').get((req, res) => {
     
     res.json("Logged out")
 });
-
-
+  
+router.get('/',verifyLogin,async(req,res,next)=>{
+    let tweets = await userHelpers.getTweets()
+    if (tweets) {
+        res.json(tweets)
+    } else if (err) {
+        console.log(err);
+    }
+})
 
 
 // router.route('/profile')
