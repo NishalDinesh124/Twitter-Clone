@@ -170,12 +170,14 @@ function Homepage() {
                         <div className="right-panel">
                             <div className="contents">
                                 <div className="name-section">
-                                    <h5>Elon Musk </h5><p>@elonmusk</p> <i class="fa-solid fa-ellipsis"></i>
+                                    <h5>{tweets.userName} </h5><p>@{tweets.twittername}</p>
+                                     <i class="fa-solid fa-ellipsis"></i>
                                 </div>
                                 <div className="content-section">
                                     <p>{tweets.tweet}</p>
                                 </div>
-                                {tweets.imageId && <img className='tweet-img' src={require(`../public/images/${tweets._id}.jpg`)}></img> }
+                                {/* {tweets.imageId && <img className='tweet-img' src={require(`../public/images/${tweets._id}.jpg`)}></img> } */}
+                                {/* {tweets.imageId && <img className='tweet-img' src={require(`../public/images/tree.jpg`)}></img> } */}
                                 
 
                                 <div className="reaction-section">

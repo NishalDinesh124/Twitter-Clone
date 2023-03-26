@@ -183,6 +183,11 @@
 .creators .right-panel .name-section h5 {
     font-size: 16px;
     color: black;
+    white-space: nowrap;
+}
+.creators .right-panel .name-section h5:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .creators .right-panel .name-section p {
@@ -190,6 +195,9 @@
     margin-left: 8px;
     font-size: 15px;
     font-weight: 400;
+}
+.creators .right-panel .name-section p:hover{
+    cursor: pointer;
 }
 .top-panel .img-input{
     width: 0px;

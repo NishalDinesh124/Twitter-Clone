@@ -1,0 +1,129 @@
+.main-div{
+    border: solid 1px green;
+    width: 37rem;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.main-div .profile-nav{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    border: solid 1px green;
+}
+.main-div .banner{
+    border: solid 1px blue;
+    width: 100%;
+    height: 200px;
+    background-color: rgb(192, 199, 180);
+}
+.main-div .info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: solid 1px red;
+    height: 250px;
+}
+.main-div .suggestions{
+    width: 100%;
+    height: 340px;
+    border: solid 1px magenta;
+}
+.main-div .profile-nav .back-arrow{
+    border: solid 1px magenta;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+.main-div .profile-nav .back-arrow .fa-arrow-left{
+    color: black;
+    font-size: 16px;
+}
+.main-div .profile-nav .user{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    padding: 0 19px;
+    line-height: 5px;
+}
+.main-div .profile-nav .user p{
+    color: gray;
+    font-size: 13px;
+
+}
+.main-div .profile-nav .user h5{
+    color: black;
+}
+.main-div .profile-pic{
+    background-color: white;
+    opacity: 0.8;
+   
+    border-radius: 62px;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left: 25px;
+    top: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-div .profile-pic i{
+    font-size: 32px;
+    color: rgb(29, 155, 240);
+}
+.main-div .profile-pic i:hover{
+    font-size: 47px;
+    transition: 0.3s;
+}
+.main-div .info .user-info{
+    border: solid 1px magenta;
+    width: 100%;
+    padding: 2rem 25px;
+    line-height: 3px;
+    color: black;
+    margin: 0px 0
+}
+.main-div .info .user-info p{
+    color: grey;
+}
+.main-div .info .user-info h5{
+    font-weight: 700;
+}
+.main-div .info .user-info .acc-info{
+    padding: 12px 0;
+    line-height: 6px;
+}
+.main-div .info .user-info .acc-info .follow{
+    display: flex;
+    flex-direction: row;
+    width: 13em;
+    justify-content: space-between;
+}
+.main-div .info .user-info .acc-info .follow span{
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
+}
+.main-div .info .edit-btn{
+    width: 100%;
+    border:solid 1px green;
+    display: flex;
+    justify-content: flex-end;
+}
+.main-div .info .edit-btn .btn{
+    border: solid 1px lightgrey;
+    border-radius: 21px;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 5px 10px;
+}
+.main-div .info .edit-btn .btn:hover{
+    background-color: rgb(212, 212, 212);
+    border: solid 1px lightgrey;
+}
+

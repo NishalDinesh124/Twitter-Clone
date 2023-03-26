@@ -11,6 +11,9 @@ function LeftSidebar() {
     signOut();
     navigate("/login")
   }
+  const profile=()=>{
+    navigate('/profile')
+  }
   return (
     <div className='left-section'>
       <div className="twitter-icon">
@@ -62,13 +65,13 @@ function LeftSidebar() {
         <div className="home profile">
           <i class="fa-regular fa-user"></i>
           <div className="inner-home">
-          <span href="#" onClick={logout}> Profile </span>
+          <span href="#" onClick={profile}> Profile </span>
           </div>
         </div>
         <div className="home more">
           <i class="fa-regular fa-comment-dots"></i>
           <div className="inner-home">
-          <span href="#"> More </span>
+          <span href="#" onClick={logout}> More </span>
           </div>
         </div>
 
