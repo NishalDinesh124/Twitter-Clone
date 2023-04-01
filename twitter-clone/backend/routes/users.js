@@ -199,9 +199,9 @@ router.post('/updateProfilePic',async(req,res)=>{
     
     })
 })
-router.get('/users',async(req,res)=>{
+router.post('/users',async(req,res)=>{
     console.log("CAaaaal");
-    let users = userHelpers.getUsers()
+    let users =await userHelpers.getUsers()
     console.log(users);
     res.send(users)
 

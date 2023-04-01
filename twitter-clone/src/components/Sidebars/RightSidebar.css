@@ -1,9 +1,8 @@
 .right-section{
+    margin-left: 10px;
     width: 350px;
-    border: solid 1px green;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 3px 0px;
     align-items: center;
 }
@@ -36,22 +35,21 @@
     border-bottom-right-radius:25px ;
     border-top-right-radius: 25px;
 }
-.search-holder:focus{
-    border: solid 1px blue;
-}
 .right-section .search-bar .search-holder p{
     margin-top: 7px;
 }
 .right-section .flw-suggestions{
-    height: 93%;
+    margin: 18px 0;
     width: 90%;
+    height: 100%;
     background-color: #837f7f14;
-    border-radius: 25px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
 }
 .right-section .flw-suggestions .acc-name{
     height: 80px;
+    width: 93%;
     display: flex;
 }
 .right-section .flw-suggestions .acc-name:hover{
@@ -61,7 +59,6 @@
 .right-section .flw-suggestions .acc-name .acc-img{
     width: 25%;
     height: 100%;
-    border: solid 1px green;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,7 +71,6 @@
 }
 
 .right-section .flw-suggestions .acc-name .acc-details{
-    border: solid 1px green;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -83,7 +79,6 @@
 }
 .right-section .flw-suggestions .acc-name .flw-btn{
     width: 25%;
-    border: solid 1px red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,7 +102,8 @@
     font-weight: 600;
 }
 .right-section .flw-suggestions .heading{
-    padding: 8px 12px;
+    padding-top: 16px;
+    padding-left: 17px;
 }
 .right-section .flw-suggestions .heading h4{
     font-size: 22px;

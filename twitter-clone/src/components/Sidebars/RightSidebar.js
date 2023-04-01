@@ -9,7 +9,7 @@ function RightSidebar() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/users')
+    axios.post('http://localhost:5000/users')
       .then((res) => {
         if (res.data) {
           console.log(res.data);
@@ -31,13 +31,34 @@ function RightSidebar() {
         </input>
       </div>
       <div className="flw-suggestions">
-        <div className="heading">
+      <div className="heading">
           <h4>You might like</h4>
         </div>
-        
-       
+     
+      
+      {users.map((users)=>{
+        return(
 
-      </div>
+       
+        <div className="acc-name">
+          <div className="acc-img">
+            <div className="round-img">
+
+            </div>
+
+          </div>
+          <div className="acc-details">
+            <p className='username'>{users.username}</p>
+            <p className='twt-name'>@{users.twittername}</p>
+          </div>
+          <div className="flw-btn">
+            <button className='btn'>follow</button>
+          </div>
+        </div>
+        )
+      })}
+       </div>
+      
     </div>
   )
 }

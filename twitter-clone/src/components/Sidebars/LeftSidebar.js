@@ -14,6 +14,9 @@ function LeftSidebar() {
   const profile=()=>{
     navigate('/profile')
   }
+  const goingHome=()=>{
+    navigate('/')
+  }
   return (
     <div className='left-section'>
       <div className="twitter-icon">
@@ -22,9 +25,9 @@ function LeftSidebar() {
       <div className="panel">
     
         <div className="home home-1">
-          <i class="fa-solid fa-house-chimney-window" onClick={navigate('/')}></i>
+          <i class="fa-solid fa-house-chimney-window"></i>
           <div className="inner-home">
-          <span href="#"> Home </span>
+          <span href="#"  onClick={goingHome}> Home </span>
           </div>
 
         </div>

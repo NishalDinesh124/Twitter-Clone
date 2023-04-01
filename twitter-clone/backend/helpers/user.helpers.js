@@ -87,12 +87,12 @@ module.exports={
     },
     getUsers: ()=>{
         try{
-            return new Promise(async(resolve ,reject)=>{
-                User.find().then((result)=>{
-                    resolve(result)
-                }).catch((err)=>{
-                    console.log(err);
+            return new Promise((resolve, reject) => {
+                User.find()
+                .then((users)=>{
+                    resolve(users)
                 })
+                .catch(err => resolve(err))
             })
         }catch(err){
             console.log(err);

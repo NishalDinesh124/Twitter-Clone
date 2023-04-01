@@ -1,13 +1,11 @@
 .left-section{
     width: 288px;
-    border: solid 1px magenta;
     border-right: none;
     display: flex;
     flex-direction: column;
     padding: 0px 19px;
 }
 .panel{
-    border: solid 1px green;
     flex-direction: column;
     height: 482px;
 }
