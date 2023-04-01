@@ -38,12 +38,12 @@ function Homepage() {
         event.preventDefault()
         if (file) {
             console.log("Image is there");
+            console.log(file);
             //let formData = new FormData();
             //formData.append('Image', image);
 
             event.preventDefault();
             const formData = new FormData();
-            formData.append('tweet', tweet)
 
             for (var x = 0; x < file.length; x++) {
                 formData.append('file', file[x])
@@ -176,7 +176,7 @@ function Homepage() {
                                 <div className="content-section">
                                     <p>{tweets.tweet}</p>
                                 </div>
-                                {/* {tweets.imageId && <img className='tweet-img' src={require(`../public/images/${tweets._id}.jpg`)}></img> } */}
+                                
                                 {/* {tweets.imageId && <img className='tweet-img' src={require(`../public/images/tree.jpg`)}></img> } */}
                                 
 

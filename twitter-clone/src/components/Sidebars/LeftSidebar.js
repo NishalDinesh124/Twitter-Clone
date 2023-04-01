@@ -17,7 +17,7 @@ function LeftSidebar() {
   return (
     <div className='left-section'>
       <div className="twitter-icon">
-        <i class="fa-brands fa-twitter"></i>
+        <i classname="fa-brands fa-twitter"></i>
       </div>
       <div className="panel">
     

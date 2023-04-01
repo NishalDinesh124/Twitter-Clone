@@ -1,4 +1,119 @@
 .right-section{
-    width: 300px;
+    width: 350px;
+    border: solid 1px green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3px 0px;
+    align-items: center;
+}
+.right-section .search-bar{
+    color: rgb(109, 108, 108);
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 42px;
+    border-radius: 25px;
+}
+.right-section .search-bar .search-icon{
+    background-color: #04040412;
+    width: 17%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius:25px ;
 
 }
+.right-section .search-bar .search-holder{
+    width: 83%;
+    display: flex;
+    flex-direction: column;
+    outline: none;
+    border: none;
+    background-color: #04040412;
+    border-bottom-right-radius:25px ;
+    border-top-right-radius: 25px;
+}
+.search-holder:focus{
+    border: solid 1px blue;
+}
+.right-section .search-bar .search-holder p{
+    margin-top: 7px;
+}
+.right-section .flw-suggestions{
+    height: 93%;
+    width: 90%;
+    background-color: #837f7f14;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.right-section .flw-suggestions .acc-name{
+    height: 80px;
+    display: flex;
+}
+.right-section .flw-suggestions .acc-name:hover{
+    background-color: rgba(231, 227, 227, 0.733);
+    cursor: pointer;
+}
+.right-section .flw-suggestions .acc-name .acc-img{
+    width: 25%;
+    height: 100%;
+    border: solid 1px green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right-section .flw-suggestions .acc-name .acc-img .round-img{
+    border: solid 1px magenta;
+    width: 55px;
+    height: 55px;
+    border-radius: 30px;
+}
+
+.right-section .flw-suggestions .acc-name .acc-details{
+    border: solid 1px green;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5em 0;
+}
+.right-section .flw-suggestions .acc-name .flw-btn{
+    width: 25%;
+    border: solid 1px red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.right-section .flw-suggestions .acc-name .acc-details .username{
+    font-weight: 600;
+    line-height: 0;
+}
+.right-section .flw-suggestions .acc-name .acc-details .twt-name{
+    color: grey;
+    line-height: 12px;
+}
+.right-section .flw-suggestions .acc-name .flw-btn .btn{
+    background-color: rgb(17, 17, 17);
+    color: #fff;
+    height: 33px;
+    width: 78px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    font-weight: 600;
+}
+.right-section .flw-suggestions .heading{
+    padding: 8px 12px;
+}
+.right-section .flw-suggestions .heading h4{
+    font-size: 22px;
+    font-weight: 700;
+}
+.right-section .flw-suggestions .acc-name .flw-btn:hover{
+    opacity: 0.9;
+}
+

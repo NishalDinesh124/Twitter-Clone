@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/" element={<RequireAuth loginPath="/login"><Home/></RequireAuth>}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/signup" element={<Signup/>}/>
-          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/profile"  element={<RequireAuth loginPath="/login"><Profile/></RequireAuth>}/>
         </Routes>
 
     </div>

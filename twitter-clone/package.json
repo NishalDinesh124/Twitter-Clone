@@ -25,6 +25,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
+    "setTimeout": "^0.4.9",
+    "timers-promises": "^1.0.1",
     "url": "^0.11.0",
     "web-vitals": "^2.1.4"
   },
@@ -51,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.10"
   }
 }

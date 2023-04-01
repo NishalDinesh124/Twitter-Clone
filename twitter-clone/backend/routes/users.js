@@ -40,24 +40,13 @@ app.use("/static", express.static("../uploads"));
 //////////////////////////////
  
 const verifyLogin = (req, res, next) => {
-    console.log("Working");
     if (userLoggedIn) {
       next()
     } else {
-      console.log("Working");
       res.send(null)
     }
   }
 
-  var storage = multer.diskStorage({
-    destination: "d:/backup/projects/Twitter Clone/twitter-clone/src/components/public/images",
-    filename: function (req, file,cb) {
-        console.log(file);
-        
-    cb(null, userLoggedIn._id + '.' + 'jpg' )
-    }
-    })
-var upload = multer({ storage: storage }).any('file');
 
 //// ROUTES//////
 /////////////////
@@ -128,48 +117,52 @@ router.route('/tweet').post((req,res)=>{
 });
 
 
-// router.post('/imgtweet',async(req,res)=>{
+//  router.post('/imgtweet',async(req,res)=>{
    
 
 //     const form =await formidable({ multiples: true });
 //     form.parse(req, async(err, fields, files) => {
 //          date= Date.now()
 //         console.log(fields);
-//         let tweet = fields.tweet
-//         let userId= userLoggedIn._id
-//         let imgId = date
-//     const newTweet =await new Tweet ({
-//         userId: userId,
-//         tweet : tweet,
-//         imageId : imgId
-//     }) 
+    //     let username = userLoggedIn.username
+    //     let twittername= userLoggedIn.twittername
+    //     let tweet = fields.tweet
+    //     let userId= userLoggedIn._id
+    //     let imgId = date
+    // const newTweet =await new Tweet ({
+    //     twittername : twittername,
+    //     userName : username,
+    //     userId: userId,
+    //     tweet : tweet,
+    //     imageId : imgId
+    // }) 
    
-//     newTweet.save()
-//     .then(async(res)=>{
-//         console.log(res._id);
-//         console.log("Tweets working!!!!!!!!!!!!!");
+    // newTweet.save()
+    // .then(async(res)=>{
+    //     console.log(res._id);
+    //     //console.log("Tweets working!!!!!!!!!!!!!");
     
-//     })
-//     .catch(err=> console.log(err))
-//     });
+    // })
+    // .catch(err=> console.log(err))
+    // });
     
-        // upload(req, res, function (err) {
-        //     if (err instanceof multer.MulterError) {
-        //         return res.status(500).json(err)
-        //     } else if (err) {
-        //         return res.status(500).json(err)
-        //     }
-        // return res.status(200).send(req.file)
+    //     upload(req, res, function (err) {
+    //         if (err instanceof multer.MulterError) {
+    //             return res.status(500).json(err)
+    //         } else if (err) {
+    //             return res.status(500).json(err)
+    //         }
+    //     return res.status(200).send(req.file)
         
-        // })
+    //     })
     
  
 
-//     });
+    // });
 
 
 
-router.route('/profile').get((req, res) => {
+router.route('/profile',verifyLogin).get((req, res) => {
     console.log("Api call");
     userHelpers.getUserDetails(userLoggedIn._id)
         .then((response) => {
@@ -177,17 +170,66 @@ router.route('/profile').get((req, res) => {
         })
         .catch(err => res.status(400).json("Error :" + err))
 });
+router.post('/updateProfilePic',async(req,res)=>{
+    console.log("Call from api");
+    
+       //     let tweet = fields.tweet
+    //     let userId= userLoggedIn._id
+    //     let imgId = date
+    // const newTweet =await new Tweet ({
+    //     userId: userId,
+    //     tweet : tweet,
+    //     imageId : imgId
+    // }) 
+   
+    // newTweet.save()
+    // .then(async(res)=>{
+    //     console.log(res._id);
+    //     console.log("Tweets working!!!!!!!!!!!!!");
+    
+    // })
+    // .catch(err=> console.log(err))
+    upload(req, res, function (err) {
+        if (err instanceof multer.MulterError) {
+            return res.status(500).json(err)
+        } else if (err) {
+            return res.status(500).json(err)
+        }
+    return res.status(200).send(req.file)
+    
+    })
+})
+router.get('/users',async(req,res)=>{
+    console.log("CAaaaal");
+    let users = userHelpers.getUsers()
+    console.log(users);
+    res.send(users)
 
+})
 router.route('/logout').get((req, res) => {
     
     
     res.json("Logged out")
 });
+/////////////////////////////////
+/////// MULTER STORAGE //////////
+/////////////////////////////////
+var storage = multer.diskStorage({
+    destination: "d:/backup/projects/Twitter Clone/twitter-clone/src/components/public/images",
+    filename: function (req, file,cb) {
+        console.log(file);
+        let date = Date.now()
+        
+    cb(null, userLoggedIn._id  + '.' + 'jpg' )
+    }
+    })
+var upload = multer({ storage: storage }).any('file');
+
+
   
 
 
 
 // router.route('/profile')
-
 
 module.exports = router;

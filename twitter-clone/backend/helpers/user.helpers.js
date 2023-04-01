@@ -1,7 +1,8 @@
 let User = require('../models/users.model');
 let Tweets = require('../models/tweets.model');
 const { response } = require('express');
-var bcrypt = require ('bcrypt')
+var bcrypt = require ('bcrypt');
+const { log } = require('console');
 
 module.exports={
     getTweets : () =>{
@@ -79,6 +80,19 @@ module.exports={
             return new Promise((resolve, reject) => {
                 let user = User.findById(userId)
                 resolve(user)
+            })
+        }catch(err){
+            console.log(err);
+        }
+    },
+    getUsers: ()=>{
+        try{
+            return new Promise(async(resolve ,reject)=>{
+                User.find().then((result)=>{
+                    resolve(result)
+                }).catch((err)=>{
+                    console.log(err);
+                })
             })
         }catch(err){
             console.log(err);
