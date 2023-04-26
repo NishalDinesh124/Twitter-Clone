@@ -1,9 +1,9 @@
 .right-section{
     margin-left: 10px;
-    width: 350px;
+    min-width: 350px;
     display: flex;
     flex-direction: column;
-    padding: 3px 0px;
+    padding-right: 3rem;
     align-items: center;
 }
 .right-section .search-bar{
@@ -46,6 +46,7 @@
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    min-height: 780px;
 }
 .right-section .flw-suggestions .acc-name{
     height: 80px;
@@ -113,3 +114,16 @@
     opacity: 0.9;
 }
 
+
+/*/////// MEDIA QUERIES ///////////*/
+
+
+@media screen and (max-width : 1004px) {
+    .container{
+        min-width: 1000px;
+    }
+    .right-section{
+        display: none;
+    }
+    
+}

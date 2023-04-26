@@ -6,7 +6,7 @@ import './Home.css'
 
 function Home(props) {
   return (
-    <div className='container'>
+    <div className='main-container'>
     <LeftSidebar/>
     <Homepage/>
     <RightSidebar/>

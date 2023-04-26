@@ -85,7 +85,11 @@ function LeftSidebar() {
        <button className='tweet-btn'>
         Tweet
        </button>
+       <button className='tweet-btn-res'>
+       <i class="fa-solid fa-pen-clip"></i>
+       </button>
       </div>
+      
 
 
       <div className="account">

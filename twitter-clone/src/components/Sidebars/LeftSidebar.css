@@ -1,9 +1,10 @@
 .left-section{
     width: 288px;
     border-right: none;
-    display: flex;
+    display: hidden;
     flex-direction: column;
-    padding: 0px 19px;
+   
+   
 }
 .panel{
     flex-direction: column;
@@ -47,6 +48,16 @@
 }
 .tweet-btn{
     padding: 15px 6em;
+    background-color: rgb(29, 155, 240);
+    font-weight: 700;
+    color: #fff;
+    border-radius: 30px;
+    border: none;
+}
+.tweet-btn-res{
+    display: none;
+    padding: 16px 1em;
+    border-radius: -4px;
     background-color: rgb(29, 155, 240);
     font-weight: 700;
     color: #fff;
@@ -110,3 +121,24 @@
     background-color: rgba(224, 219, 219, 0.973);
 }
 
+/*///// MEDIA QUERIES ///////*/
+
+@media  only screen and (max-width: 1280px)  {
+    .panel .home .inner-home{
+     display: none;
+    }
+    .left-section{
+        width: 90px;
+        padding: 0px 1rem;
+    }
+    .tweet-btn-res{
+        display: flex;
+    }
+    .tweet-btn{
+        display: none;
+    }
+    .container{
+        width: 100%;
+    }
+    
+}
