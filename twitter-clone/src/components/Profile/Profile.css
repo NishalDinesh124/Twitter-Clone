@@ -1,32 +1,35 @@
 .main-div{
-    width: 37rem;
+    border: solid 1px lightgrey;
+    max-width: 37rem;
     position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    height: 800px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
 }
 .main-div .profile-nav{
     display: flex;
-    width: 100%;
+    max-width: 100%;
     height: 50px;
+    padding: 0px 9px;
 }
 .main-div .banner{
-    width: 100%;
+    max-width: 100%;
     height: 200px;
     background-color: #c3c7cb;
 }
 .main-div .info{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    max-width: 100%;
     height: 250px;
 }
 .main-div .suggestions{
-    width: 100%;
+    max-width: 100%;
     height: 340px;
 }
 .main-div .profile-nav .back-arrow{
-    width: 10%;
+    max-width: 10%;
     display: flex;
     align-items: center;
     justify-content: center;   
@@ -38,7 +41,7 @@
 .main-div .profile-nav .user{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    max-width: 90%;
     height: 100%;
     padding: 0 19px;
     line-height: 5px;
@@ -54,7 +57,6 @@
 .main-div .profile-pic{
     background-color: white;
     opacity: 0.8;
-   
     border-radius: 62px;
     width: 120px;
     height: 120px;
@@ -66,7 +68,7 @@
     align-items: center;
 }
 .main-div .profile-pic:hover{
-    width: 130px;
+    max-width: 130px;
     height: 130px;
     border-radius: 80px;
     transition: 1s;
@@ -80,7 +82,7 @@
     transition: 0.3s;
 }
 .main-div .info .user-info{
-    width: 100%;
+    max-width: 100%;
     padding: 2rem 25px;
     line-height: 3px;
     color: black;
@@ -99,7 +101,7 @@
 .main-div .info .user-info .acc-info .follow{
     display: flex;
     flex-direction: row;
-    width: 13em;
+    max-width: 13em;
     justify-content: space-between;
 }
 .main-div .info .user-info .acc-info .follow span{

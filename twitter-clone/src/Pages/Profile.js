@@ -5,15 +5,17 @@ import RightSidebar from '../components/Sidebars/RightSidebar'
 import '../Pages/Home.css'
 function ProfilePage() {
   return (
-    <div>
-        <div className='container'>
-        <LeftSidebar/>
+    
+      <div className="main-container">
+      <LeftSidebar/>
       <Profile/>
       <RightSidebar/>
-      
-        </div>
+      </div>
        
-    </div>
+      
+        
+       
+    
   )
 }
 

@@ -1,9 +1,9 @@
 .right-section{
+    margin-top: 8px;
     margin-left: 10px;
     min-width: 350px;
     display: flex;
     flex-direction: column;
-    padding-right: 3rem;
     align-items: center;
 }
 .right-section .search-bar{

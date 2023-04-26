@@ -42,7 +42,6 @@ function Profile() {
     }
   }
   return (
-    <div>
       <div className='main-div'>
         <div className="profile-nav">
           <div className='back-arrow'>
@@ -85,7 +84,7 @@ function Profile() {
         <div className="suggestions">
         </div>
       </div>
-    </div>
+    
   )
 }
 
