@@ -8,6 +8,20 @@ function RightSidebar() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
 
+  const addFollow = (name)=>{
+    console.log(name);
+    axios({
+      method: "post",
+      url: "http://localhost:5000/follow",
+      data: {
+        name
+      }
+    })
+    .then((res)=>{
+      console.log(res.data)
+    })
+   }
+
   useEffect(() => {
     axios.post('http://localhost:5000/users')
       .then((res) => {
@@ -21,6 +35,9 @@ function RightSidebar() {
         }
       })
   }, [])
+
+  
+ 
   return (
     <div className='right-section'>
       <div className="search-bar">
@@ -52,7 +69,7 @@ function RightSidebar() {
             <p className='twt-name'>@{users.twittername}</p>
           </div>
           <div className="flw-btn">
-            <button className='btn'>follow</button>
+            <button className='btn' onClick={()=> addFollow(users.twittername)}>follow</button>
           </div>
         </div>
         )

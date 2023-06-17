@@ -5,7 +5,7 @@ import './Signup.css';
 
 function Signup() {
     const [name, setName] =useState('');
-    const [userName, setUserName] =useState('');
+    const [twitterName, setTwitterName] =useState('');
     const [email , setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [month,setMonth] = useState('');
@@ -27,15 +27,17 @@ function Signup() {
             url : "http://localhost:5000/signup",
            
             data : {
-                twittername :userName,
+                twittername : twitterName,
                 username: name ,
                 email :email,
                 password: password,
-                dob : date
+                dob : date,
+                followers : 0,
+                following : 0,
             }
         }).then((response)=>{
             if(response.data){
-                alert("Email already exist")
+                alert("Username already exist")
             }else{
                 alert("User added")
                 navigate('/')
@@ -57,7 +59,7 @@ function Signup() {
 
            
                <input type="text" value={name} placeholder='Name' onChange={(e)=>setName(e.target.value) } />
-               <input type="text" value={userName} placeholder='Username' onChange={(e)=>setUserName(e.target.value) } />
+               <input type="text" value={twitterName} placeholder='Username' onChange={(e)=>setTwitterName(e.target.value) } />
                <input type="text" placeholder='Phone or Email' onChange={(e)=>setEmail(e.target.value) } />
                <input type="password" placeholder='Password' onChange={(e)=>setPassword(e.target.value) } />
                <div className="term-sec">

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useSignIn } from 'react-auth-kit';
 
 function Login() {
-    const [name, setName] =useState('');
+    const [twittername, setName] =useState('');
     const [email , setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate= useNavigate();
@@ -23,7 +23,7 @@ function Login() {
             method: "post",
             url : "http://localhost:5000/login",
             data:{
-                username: name,
+                username: twittername,
                 password: password,
                 email:email
             }
@@ -40,8 +40,8 @@ function Login() {
                 })
                 navigate('/')
             }else{
-                console.log("Invalid email or password");
-                alert("Invalid email or password")
+                console.log("Invalid username or password");
+                alert("Invalid username or password")
             }
         })
     }
@@ -56,7 +56,7 @@ function Login() {
 
            <h5>Login to Twitter</h5>
            </div>
-           <input type="text" value={name} placeholder='Name' onChange={(e)=>setName(e.target.value) } />
+           <input type="text" value={twittername} placeholder='Name' onChange={(e)=>setName(e.target.value) } />
                <input type="text" placeholder='Email' onChange={(e)=>setEmail(e.target.value) } />
                <input type="password" placeholder='Password' onChange={(e)=>setPassword(e.target.value) } />
         
