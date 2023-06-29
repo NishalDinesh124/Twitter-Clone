@@ -105,7 +105,7 @@ module.exports = {
                let user =await User.findOne({"twittername" : username})
                if(user){
                 let followers =await user.followers
-                User.update({twittername : username},{
+                User.updateOne({twittername : username},{
                     followers : followers +1
                 }).then((res)=>{
                     resolve(res);
