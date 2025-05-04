@@ -1,4 +1,4 @@
-# My Awesome Twitter Clone
+# Twitter Clone
 
 This project is a simplified, personal take on the popular social media platform, Twitter (now X). It's built to explore ReactJS, Node.js, and MongoDB.
 
